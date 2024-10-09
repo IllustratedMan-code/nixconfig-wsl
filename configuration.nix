@@ -18,6 +18,8 @@
     nixd
     nixfmt-classic
     qmk
+    pdftk
+    ghostscript_headless
   ];
   programs.nix-ld = {
     enable = true;
@@ -25,7 +27,7 @@
   };
 
   programs.direnv.enable = true;
-
+  programs.zsh.enable = true;
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   hardware.keyboard.qmk.enable = true;
   # This value determines the NixOS release from which the default

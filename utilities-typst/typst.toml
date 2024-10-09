@@ -1,0 +1,10 @@
+[package]
+name = "utilities"
+version = "1.0.0"
+entrypoint = "main.typ"
+authors = ["David Lewis"]
+description = "Utility functions for repetitive stuff"
+
+[template]
+path = "./"
+entrypoint = "main.typ"
