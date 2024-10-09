@@ -20,6 +20,7 @@
     qmk
     pdftk
     ghostscript_headless
+    ocrmypdf
   ];
   programs.nix-ld = {
     enable = true;

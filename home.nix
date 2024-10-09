@@ -27,6 +27,7 @@
     enableCompletion = true;
     autosuggestion.enable = true;
     syntaxHighlighting.enable = true;
+    initExtraBeforeCompInit = builtins.readFile ./zshrc.sh;
 
     shellAliases = {
       ll = "ls -l";
