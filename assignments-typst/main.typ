@@ -1,14 +1,34 @@
+#import "@preview/titleize:0.1.0": titlecase
 #let author(name, affiliation: none, email: none) = (name: name, affiliation: affiliation, email: email)
 
-
+#let csvtable(csvdata) = {
+  let data = csvdata.slice(1)
+  table(
+    columns: csvdata.first().len(),
+    table.header(..csvdata.first()),
+    ..csvdata.slice(1).flatten(),
+    if csvdata.first().first() == "" {
+      table.vline(x: 1)
+    } else {
+      table.vline(x: 1, stroke: none)
+    },
+  )
+}
 
 #let conf(
   title: none,
+  subtitle: none,
   date: none,
   authors: (author([David Lewis], email: "lewis3d7@mail.uc.edu"),),
   titlepage: true,
   doc,
 ) = {
+  if title != none {
+    title = titlecase(title)
+  }
+  if subtitle != none {
+    subtitle = titlecase(subtitle)
+  }
   if date == none {
     date = datetime.today().display("[month repr:long] [day padding:none], [year]")
   }
@@ -23,7 +43,7 @@
     if it.lang != none {
       lang = [#upper(it.lang.first())#it.lang.slice(1)]
     }
-    let codebox = box(
+    let codebox = block(
       outset: 0pt,
       stroke: black,
       radius: if lang != none {
@@ -63,14 +83,12 @@
     set align(center)
     grid(
       columns: 1,
-      inset: 3pt,
       align: (right),
-      stack(
-        if lang != none {
-          langbox
-        },
-        codebox,
-      ),
+      if lang != none {
+        grid.header(langbox)
+      },
+
+      codebox,
     )
   }
   set page(
@@ -93,19 +111,38 @@
     ],
   )
   // quotes
-  set quote(block: true, quotes: true)
+  set quote(block: true, quotes: true, attribution: authors.first().name)
   show quote: quote => {
     set align(center)
-    box(stroke: none, inset: 5pt, fill: rgb("#ffebcd"), radius: 5pt, quote)
+    block(
+      stroke: none,
+      width: 80%,
+      inset: 5pt,
+      fill: rgb("#ffebcd"),
+      radius: 5pt,
+      {
+        set align(left)
+        quote
+      },
+    )
   }
 
   // tables
   set table(stroke: (x, y) => if y == 0 {
     (bottom: black)
   })
-
+  //
+  //
+  //figures
+  show figure.caption: it => pad(
+    left: 1cm,
+    right: 2cm,
+    align(left, par(hanging-indent: 1cm, justify: true, it)),
+  )
   let r = rect(height: 2pt, fill: black, width: 100%)
-  //show heading: it => text(weight: 2, it.body)
+  //
+
+  //heading
   show heading.where(level: 1): it => block(
     align(
       center,
@@ -135,6 +172,9 @@
     set align(center)
     if titlepage and title != none {
       [ #text(17pt, weight: "bold", title) \
+        #if subtitle != none [
+          #text(15pt, weight: "semibold", subtitle) \
+        ]
         #text(12pt, weight: "bold", date)
       ]
 

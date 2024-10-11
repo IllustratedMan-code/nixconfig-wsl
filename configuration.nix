@@ -20,6 +20,7 @@
     qmk
     pdftk
     ghostscript_headless
+    ripgrep-all
     ocrmypdf
   ];
   programs.nix-ld = {

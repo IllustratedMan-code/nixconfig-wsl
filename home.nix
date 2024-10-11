@@ -35,6 +35,7 @@
       sudo = "sudo ";
       vim = "nvim";
       vi = "nvim";
+      rg = "rga";
     };
     history = {
       size = 10000;
