@@ -22,6 +22,8 @@
     ghostscript_headless
     ripgrep-all
     ocrmypdf
+    pandoc
+    mdbook
   ];
   programs.nix-ld = {
     enable = true;

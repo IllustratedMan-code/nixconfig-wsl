@@ -102,7 +102,7 @@
         #line(length: 100%)
       ]
     },
-    footer: [
+    footer: context [
       #line(length: 100%)
 
       #authors.map(author => [#author.name]).join(",")
@@ -186,7 +186,7 @@
         let is-last = count == end
         let slice = authors.slice(i * ncols, end)
         grid(
-          columns: (1fr,) * ncols,
+          columns: (1fr,) * slice.len(),
           row-gutter: 2pt,
           ..slice.map(author => [
             #author.name \
