@@ -21,8 +21,11 @@
   date: none,
   authors: (author([David Lewis], email: "lewis3d7@mail.uc.edu"),),
   titlepage: true,
+  doublespaced: false,
   doc,
 ) = {
+  set text(top-edge: 0.7em, bottom-edge: -0.3em) if doublespaced == true
+  set par(leading: 1em) if doublespaced == true
   if title != none {
     title = titlecase(title)
   }
@@ -37,6 +40,8 @@
   show figure.where(kind: "code"): it => {
     it.supplement = [Code]
   }
+
+  set bibliography(title: "References")
 
   show raw.where(block: true): it => {
     let lang = none
@@ -128,9 +133,11 @@
   }
 
   // tables
-  set table(stroke: (x, y) => if y == 0 {
-    (bottom: black)
-  })
+  set table(
+    stroke: (x, y) => if y == 0 {
+      (bottom: black)
+    },
+  )
   //
   //
   //figures
@@ -171,7 +178,8 @@
   {
     set align(center)
     if titlepage and title != none {
-      [ #text(17pt, weight: "bold", title) \
+      [
+        #text(17pt, weight: "bold", title) \
         #if subtitle != none [
           #text(15pt, weight: "semibold", subtitle) \
         ]
@@ -201,7 +209,6 @@
         if not is-last {
           v(16pt, weak: true)
         }
-
       }
       v(40pt, weak: true)
     }

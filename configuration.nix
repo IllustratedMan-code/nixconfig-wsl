@@ -8,6 +8,7 @@
 { config, lib, pkgs, ... }:
 
 {
+  nixpkgs.config.allowUnfree = true;
   imports = [ ./development-tools.nix ];
   wsl.defaultUser = "nixos";
   environment.systemPackages = with pkgs; [
@@ -29,7 +30,11 @@
     enable = true;
     package = pkgs.nix-ld-rs;
   };
-
+  fonts.packages = with pkgs; [
+  (nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" ]; })
+  corefonts
+  vistafonts
+  ];
   programs.direnv.enable = true;
   programs.zsh.enable = true;
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
