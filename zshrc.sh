@@ -23,4 +23,6 @@ gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -dPDFSETTINGS=/prepress -dNOPAUSE 
 
 alias rzi="rm -rf **/*Zone.Identifier"
 
+export COLORTERM=truecolor
+
 

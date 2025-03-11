@@ -9,3 +9,4 @@ description = "General purpose template for assignments."
 [template]
 path = "./"
 entrypoint = "main.typ"
+
