@@ -7,7 +7,10 @@
 
   xdg.dataFile."typst/packages/local/assignments/1.0.0".source =
     ./assignments-typst;
-  home.file."texmf/tex/latex/custom/assignments.cls" =
+
+  xdg.dataFile."typst/packages/local/poster/1.0.0".source =
+    ./cchmc-poster-typst;
+  home.file."texmf/tex/latex/custom/assignments.cls".source =
     ./assignments-latex/assignments.cls;
 
   programs.home-manager.enable = true;

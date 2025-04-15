@@ -187,7 +187,6 @@
       },
     )
   }
-
   // tables
   set table(
     stroke: (x, y) => if y == 0 {
@@ -197,11 +196,19 @@
   //
   //
   //figures
-  show figure.caption: it => pad(
-    left: 1cm,
-    right: 2cm,
-    align(left, par(hanging-indent: 1cm, justify: true, it)),
-  )
+  show figure.caption: it => context {
+    let caption_beginning = [#it.supplement #it.counter.display()#it.separator]
+    let caption = [#caption_beginning#it.body]
+
+    pad(
+      left: 1cm,
+      right: 2cm,
+      align(
+        left,
+        par(hanging-indent: measure(caption_beginning).width + 0.2em, justify: true, caption),
+      ),
+    )
+  }
   let r = rect(height: 2pt, fill: black, width: 100%)
   //
 

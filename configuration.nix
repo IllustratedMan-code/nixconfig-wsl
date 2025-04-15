@@ -26,19 +26,20 @@
     pandoc
     mdbook
     nil
+    typst
+    zip
   ];
   programs.nix-ld = {
     enable = true;
     package = pkgs.nix-ld-rs;
   };
   fonts.packages = with pkgs; [
-    (nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" ]; })
+    nerd-fonts.fira-code
+    nerd-fonts.droid-sans-mono
     corefonts
     vistafonts
   ];
-  environment.sessionVariables = {
-    QT_QPA_PLATFORM="wayland";
-  };
+  environment.sessionVariables = { QT_QPA_PLATFORM = "wayland"; };
   programs.direnv.enable = true;
   programs.zsh.enable = true;
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
